@@ -30,7 +30,6 @@ document.getElementById('first-memory-button').addEventListener('click', functio
 });
 document.getElementById('second-memory-button').addEventListener('click', function(){
     updateProductOption('second-', 'memory', 180);
-    // getPrice ('memory', 180);
 });
 
 //handle storage option
