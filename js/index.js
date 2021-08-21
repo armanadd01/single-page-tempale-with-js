@@ -1,30 +1,26 @@
-//
+// updating product price 
 function updateProductOption( number, option, price) {
     const optionInput = document.getElementById(number + option + '-button'); 
     const productPrice = document.getElementById(option + '-price');
     productPrice.innerText = price;
     calculateTotalPrice();
 }
-
+// gettting price for calculation
  function getPrice (option){
      const productPrice = document.getElementById(option + '-price');
      const priceCollected = parseInt(productPrice.innerText);
      return priceCollected;
  }
-
+//calculate total price
  function calculateTotalPrice() {
     const bestPrice = 1299;
     const memoryPrice = getPrice('memory');
     const storagePrice = getPrice('storage');
     const deliveryPrice = getPrice('delivery');
-    // const memoryPrice = getPrice();
     const subTotal = bestPrice + memoryPrice + storagePrice + deliveryPrice;
-    // const tax = subTotal / 20;
-    // const totalPrice = subTotal - tax;
-    // update on the html
+    //  update on the html
     document.getElementById('total-price').innerText = subTotal;
-    // document.getElementById('tax-amount').innerText = tax;
-    // document.getElementById('total-price').innerText = totalPrice;
+     document.getElementById('final-total').innerText = subTotal;
 }
 
 
@@ -58,5 +54,17 @@ document.getElementById('second-delivery-button').addEventListener('click', func
 
 //handle promo code
 document.getElementById('promo-button').addEventListener('click', function(){
-    
+    const promoInput = document.getElementById('promo-code');
+    //use promo code and calculate total
+    if(promoInput.value == "stevekaku"){
+        const promoOutput = document.getElementById('final-total');
+        const promoParcent = (promoOutput.innerText / 100) * 20;
+        promoOutput.innerText = parseFloat(promoOutput.innerText) - promoParcent;
+        console.log(promoOutput.innerText);
+    }
+    else {
+        alert("Opss!! Sorry! you don't get the offer");
+    }
+    document.getElementById('promo-button').disabled=true;
+    promoInput.value = "";
 });
